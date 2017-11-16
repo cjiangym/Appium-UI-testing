@@ -12,6 +12,7 @@ sys.path.append(rootPath)
 
 class Common_method():
     testTime = time.strftime("%Y-%m-%d", time.localtime())   #测试报告时间
+    timestamp = time.strftime("%Y%m%d %H%M%S")
     #获取测试报告
     def get_reportpath(self):
         report_path = rootPath + "\\report\\" + self.testTime + "-testResult.html"
@@ -21,7 +22,7 @@ class Common_method():
     def init_case(self):
         try:
             time.sleep (1)
-            el = self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_ad_top")  # 获取开屏广告是否存在
+            el = self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_ad_top")  # 获取开屏广告是否存在
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_countdown").click ()  # 点击开屏广告上的'点击跳过'按钮
             time.sleep (2)
         except:
@@ -31,13 +32,13 @@ class Common_method():
     def pop_ads(self):
         try:
             time.sleep(2)
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/wv_adv")             #获取开屏广告
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/ib_close").tap()     #点击弹窗广告关闭按钮
-            self.driver.tap()
+            el = self.driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
+            x = self.driver.get_window_size()["width"]
+            y = self.driver.get_window_size()["height"]
+            self.driver.tap ([(x/2, y-120)], duration=None)  # 关闭弹窗个广告
             time.sleep(2)
         except:
             pass
-        return True
 
     def setUp(self):
         desired_caps = {

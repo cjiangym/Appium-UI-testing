@@ -17,7 +17,7 @@ class SearchTest(unittest.TestCase):
 
     def test_search_01(self):                    #Edit by Cjiang 2017.11.15
         u"测试搜索商店"
-        result = "执行"
+        result = False
         try:
             self.common_method.init_case()         #-----处理开屏广告
             self.common_method.pop_ads()          # ------处理弹窗广告
@@ -29,7 +29,7 @@ class SearchTest(unittest.TestCase):
             self.assertEqual(text,"附近")
             result = True
         except:
-            self.common_method.cutScreenShot("test_search_01"+"-"+self.common_method.testTime)             #异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot("test_search_01"+"_"+self.common_method.timestamp)             #异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result,"执行失败，请查看截图")
 
 
@@ -45,4 +45,4 @@ class SearchTest(unittest.TestCase):
             text = self.driver.find_element_by_name("附近优惠").text
             self.assertEqual (text, "附近优惠")
         except:
-            self.common_method.cutScreenShot("test_search_02")
+            self.common_method.cutScreenShot("test_search_02"+"_"+self.common_method.timestamp)                  #异常后截图放在erroScreenShot文件夹下
