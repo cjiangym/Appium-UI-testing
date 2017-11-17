@@ -24,6 +24,7 @@ class H5Test(unittest.TestCase):
             y = self.driver.find_element_by_id("com.ismartgo.apppub:id/rl_top_group").size["height"]
             self.driver.tap([(x1+x,y1+y)],duration=None)                        #计算出屏幕点击区域
             time.sleep(5)
+            contexts = self.driver.contexts
             pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
             self.assertEqual(pageName,"每日签到")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()

@@ -23,15 +23,21 @@ class HomepageTest(unittest.TestCase):
             time.sleep (5)
             pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
             self.assertEqual(pageName,"到店签到")
-            signButton = self.driver.find_element_by_xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[0]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[1]")
+            signButton = self.driver.find_element_by_xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]")
             canSign =signButton.is_enabled()
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/pv_back").click()
+            if canSign:
+                signButton.click()
+                time.sleep(5)
+                self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_left").click ()
+                self.assertEqual (pageName, "到店签到")
+            else:
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/pv_back").click()
         except:
             self.common_method.cutScreenShot("test_ClickShopSign"+"_"+self.common_method.timestamp)
             self.assertEqual(result,"执行失败，请查看截图")
 
     def test_clickzbgame(self):
-        u"测试拍立赚"
+        u"测试拍立赚跳转"
         result = False
         try:
             self.common_method.init_case()                       #判断开屏广告
@@ -57,3 +63,17 @@ class HomepageTest(unittest.TestCase):
         except:
             self.common_method.cutScreenShot("test_ClickShopSign"+"_"+self.common_method.timestamp)
             self.assertEqual(result,"执行失败，请查看截图")
+    def test_clickScangoods(self):
+        u"测试跳转到扫描商品首页"
+        result = False
+        try:
+            self.common_method.init_case ()  # 判断开屏广告
+            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.driver.find_element_by_name ("扫描商品").click()
+            time.sleep (5)
+            pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(pageName, "商品扫描")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+        except:
+            self.common_method.cutScreenShot ("test_ClickShopSign" + "_" + self.common_method.timestamp)
+            self.assertEqual (result, "执行失败，请查看截图")
