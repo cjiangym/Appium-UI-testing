@@ -24,7 +24,7 @@ class LoginTest(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("13450244170")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_password_input").send_keys("123456")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_login").click()
-            time.sleep(5)
+            self.driver.wait_activity("com.ismartgo.app.activity.Tab_Container_Activity",timeout=8,interval=1)
             text = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_sign_days").text
             self.assertIn("连续签到",text)
         except Exception as a:

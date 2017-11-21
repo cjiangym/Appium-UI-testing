@@ -47,8 +47,8 @@ class Common_method():
             "platformVersion": "4.4.4",
             "appPackage": "com.ismartgo.apppub",
             "appActivity": "com.ismartgo.app.activity.WelcomeActivity",
-            #"unicodeKeyboard": True,               #------屏蔽软键盘------
-           # "resetKeyboard": True
+            "unicodeKeyboard": True,               #------屏蔽软键盘------
+            "resetKeyboard": True
         }
         self.driver = webdriver.Remote ('http://127.0.0.1:4723/wd/hub', desired_caps)
         time.sleep (2)
