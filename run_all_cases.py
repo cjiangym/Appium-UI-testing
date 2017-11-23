@@ -19,7 +19,6 @@ def all_case():
     testcases = unittest.TestSuite()
     discover = unittest.defaultTestLoader.discover(case_dir,pattern="test*.py",top_level_dir=None)
     testcases.addTest(discover)
-    print(testcases)
     return testcases
 
 if __name__ == '__main__':

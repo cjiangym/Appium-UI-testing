@@ -24,22 +24,23 @@ class Common_method():
             time.sleep (1)
             el = self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_ad_top")  # 获取开屏广告是否存在
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_countdown").click ()  # 点击开屏广告上的'点击跳过'按钮
-            time.sleep (2)
+            time.sleep (1)
         except:
             pass
 
     # --------检查弹窗广告----------------#
     def pop_ads(self):
         try:
-            time.sleep(2)
+            time.sleep(1)
             el = self.driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
             x = self.driver.get_window_size()["width"]
             y = self.driver.get_window_size()["height"]
             self.driver.tap ([(x/2, y-120)], duration=None)  # 关闭弹窗个广告
-            time.sleep(2)
+            time.sleep(1)
         except:
             pass
 
+    # --------初始化----------------#
     def setUp(self):
         desired_caps = {
             "platformName": "Android",
@@ -54,8 +55,10 @@ class Common_method():
         time.sleep (2)
         return self.driver
 
+
     #-----------截图路径--------------#
     def cutScreenShot(self,picName):
         fileName = rootPath + "\\errorScreenShot\\" + picName + ".png"  #将用例方法名作为图片名
         self.driver.get_screenshot_as_file(fileName)
         time.sleep(2)
+        return fileName

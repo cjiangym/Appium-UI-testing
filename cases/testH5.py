@@ -7,7 +7,7 @@ class H5Test(unittest.TestCase):
     common_method = Common_method()
     def setUp(self):
         self.driver = self.common_method.setUp()
-        time.sleep(5)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 

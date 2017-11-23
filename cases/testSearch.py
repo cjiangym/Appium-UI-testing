@@ -10,7 +10,7 @@ class SearchTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        time.sleep(5)
+        time.sleep(3)
 
     def tearDown(self):
         self.driver.quit()
@@ -19,7 +19,7 @@ class SearchTest(unittest.TestCase):
         u"测试搜索商店"
         result = False
         try:
-            self.common_method.init_case()         #-----处理开屏广告
+            #self.common_method.init_case()         #-----处理开屏广告
             self.common_method.pop_ads()          # ------处理弹窗广告
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_new_search").click()
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_search").send_keys(u"沃尔玛")

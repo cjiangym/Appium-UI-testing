@@ -9,7 +9,7 @@ class LoginTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = Common_method.setUp(self)
-        time.sleep(5)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 
@@ -17,7 +17,7 @@ class LoginTest(unittest.TestCase):
         u"测试手机号码登录"
         result = False
         try:
-            Common_method.init_case(self)
+           # Common_method.init_case(self)
             Common_method.pop_ads(self)
             self.driver.find_element_by_name("我").click()
             self.driver.find_element_by_class_name("android.widget.ImageView").click()
