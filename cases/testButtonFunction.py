@@ -17,8 +17,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页到店签到-签到"
         result = False
         try:
-            self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_name("到店签到").click()
             time.sleep (5)
             pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
@@ -35,7 +35,7 @@ class HomepageTest(unittest.TestCase):
                 self.driver.find_element_by_id("com.ismartgo.apppub:id/pv_back").click()
         except:
             signButton = self.driver.find_element_by_id("com.ismartgo.apppub:id/store_signin")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click ()
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click()
         else:
             self.common_method.cutScreenShot ("test_ClickShopSign" + "_" + self.common_method.timestamp)
             self.assertEqual (result, "执行失败，请查看截图")
@@ -45,8 +45,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页拍立赚按钮"
         result = False
         try:
-            self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_head_img")
             button_list[1].click()                              #点击拍立赚按钮
             time.sleep(5)
@@ -56,7 +56,7 @@ class HomepageTest(unittest.TestCase):
             self.assertEqual(result, "执行失败，请查看截图")
         else:
             self.assertEqual (self.pageName, "全部")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
         self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
 
 
@@ -64,8 +64,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页小票记账按钮"
         result = False
         try:
-            self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[2].click ()                             #点击小票记账按钮
             time.sleep(2)
@@ -79,8 +79,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页扫描商品按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[3].click ()          # 点击扫描商品按钮
             time.sleep (5)
@@ -97,8 +97,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页邀请好友按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[4].click ()          # 点击邀请好友按钮
             time.sleep(2)
@@ -114,8 +114,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页商城赚按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[5].click ()          # 点击商城赚按钮
             time.sleep(2)
@@ -132,8 +132,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页超级赚按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[6].click()          # 点击超级赚按钮
             time.sleep(2)
@@ -150,8 +150,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页淘宝赚按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[7].click()           # 点击淘宝赚按钮
             time.sleep(2)
@@ -168,8 +168,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页超值购物卡按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[8].click()           # 超值购物卡
             time.sleep(2)
@@ -186,8 +186,8 @@ class HomepageTest(unittest.TestCase):
         u"点击首页礼品商城按钮"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[9].click()           # 超值购物卡
             time.sleep(2)
@@ -204,8 +204,8 @@ class HomepageTest(unittest.TestCase):
         u"点击我的页面我的兑换"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_button_list[4].click()           # 点击tab按钮“我”
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_btn_pic")
@@ -223,8 +223,8 @@ class HomepageTest(unittest.TestCase):
         u"点击我的页面网购订单"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_button_list[4].click()           # 点击tab按钮“我”
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_btn_pic")
@@ -243,8 +243,8 @@ class HomepageTest(unittest.TestCase):
         u"点击我的页面我的关注"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_button_list[4].click()           # 点击tab按钮“我”
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_btn_pic")
@@ -262,8 +262,8 @@ class HomepageTest(unittest.TestCase):
         u"点击我的页面我的卡券"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_button_list[4].click()           # 点击tab按钮“我”
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_btn_pic")
@@ -281,8 +281,8 @@ class HomepageTest(unittest.TestCase):
         u"点击我的页面购物清单"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()    # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_button_list[4].click()           # 点击tab按钮“我”
             button_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/iv_btn_pic")

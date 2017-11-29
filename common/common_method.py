@@ -19,23 +19,21 @@ class Common_method():
         return report_path
 
         # -----用例初始化,检查开屏广告--------------#
-    def init_case(self):
+    def adpass(self,driver):
         try:
-            time.sleep (1)
-            el = self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_ad_top")  # 获取开屏广告是否存在
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_countdown").click ()  # 点击开屏广告上的'点击跳过'按钮
-            time.sleep (1)
+            driver.wait_activity ("com.ismartgo.app.activity.SmartGoSplashADActivity", 3, 1)
+            driver.find_element_by_id('com.ismartgo.apppub:id/tv_countdown').click ()
+            time.sleep(2)
         except:
             pass
 
     # --------检查弹窗广告----------------#
-    def pop_ads(self):
+    def pop_ads(self,driver):
         try:
-            time.sleep(1)
-            el = self.driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
-            x = self.driver.get_window_size()["width"]
-            y = self.driver.get_window_size()["height"]
-            self.driver.tap ([(x/2, y-120)], duration=None)  # 关闭弹窗个广告
+            el = driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
+            x = driver.get_window_size()["width"]
+            y = driver.get_window_size()["height"]
+            self.driver.tap ([(x/2, y-120)], duration=None)                                # 关闭弹窗个广告
             time.sleep(1)
         except:
             pass

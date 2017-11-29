@@ -17,8 +17,8 @@ class PromotionTest(unittest.TestCase):
         u"测试从首页跳转到商店主页"
         result = False
         try:
-            #self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             x1 = self.driver.find_element_by_class_name("android.widget.ImageView").location["x"]
             y1 = self.driver.find_element_by_class_name("android.widget.ImageView").location["y"]
             x2 = self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_tab1").location["x"]
@@ -40,8 +40,8 @@ class PromotionTest(unittest.TestCase):
         u"测试从促销优惠列表点击商店logo进入商店主页"
         result = False
         try:
-            self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click()               #点击促销优惠tab
             time.sleep(3)
@@ -60,8 +60,8 @@ class PromotionTest(unittest.TestCase):
         u"测试从促销优惠列表点击商品图片进入商店主页"
         result = False
         try:
-            self.common_method.init_case()                       #判断开屏广告
-            self.common_method.pop_ads()                         #关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -79,8 +79,8 @@ class PromotionTest(unittest.TestCase):
         u"测试从促销优惠列表点击“去看看”进入商店主页"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -98,8 +98,8 @@ class PromotionTest(unittest.TestCase):
         u"测试促销优惠选择区域-附近（智能范围）"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -117,8 +117,8 @@ class PromotionTest(unittest.TestCase):
         u"测试促销优惠选择区域-附近1000米"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -136,8 +136,8 @@ class PromotionTest(unittest.TestCase):
         u"测试促销优惠选择区域-全部商区"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -157,8 +157,8 @@ class PromotionTest(unittest.TestCase):
         u"测试促销优惠选择区域-选择某个区域"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -179,8 +179,8 @@ class PromotionTest(unittest.TestCase):
         u"测试选择商店类型"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -193,8 +193,8 @@ class PromotionTest(unittest.TestCase):
         u"测试选择商店类型"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)
@@ -208,8 +208,8 @@ class PromotionTest(unittest.TestCase):
         u"测试左右滑动商店类型"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             tab_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")
             tab_list[1].click ()  # 点击促销优惠tab
             time.sleep (3)

@@ -18,8 +18,8 @@ class LocationTest(unittest.TestCase):
         u"测试城市定位,检查自动定位功能"
         result = False
         try:
-            #self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_select_city").click()
             time.sleep(2)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
@@ -34,8 +34,8 @@ class LocationTest(unittest.TestCase):
         u"测试城市定位，选择城市"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_select_city").click()
             time.sleep(2)
             city_list = self.driver.find_elements_by_class_name("android.view.View")
@@ -51,8 +51,8 @@ class LocationTest(unittest.TestCase):
         u"测试城市定位，检查最近访问的城市"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_select_city").click()
             time.sleep(2)
             city_list = self.driver.find_elements_by_class_name("android.widget.Button")
@@ -66,8 +66,8 @@ class LocationTest(unittest.TestCase):
         u"测试城市定位，搜索城市后选择城市"
         result = False
         try:
-            self.common_method.init_case ()  # 判断开屏广告
-            self.common_method.pop_ads ()  # 关闭弹窗广告
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_select_city").click()
             time.sleep(2)
             '''点击搜索框'''

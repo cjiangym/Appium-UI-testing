@@ -6,6 +6,7 @@ import time
 from common.common_method import Common_method
 
 class LoginTest(unittest.TestCase):
+    common_method = Common_method()
 
     def setUp(self):
         self.driver = Common_method.setUp(self)
@@ -17,8 +18,8 @@ class LoginTest(unittest.TestCase):
         u"测试手机号码登录"
         result = False
         try:
-           # Common_method.init_case(self)
-            Common_method.pop_ads(self)
+            self.common_method.adpass (self.driver)
+            self.common_method.pop_ads (self.driver)
             self.driver.find_element_by_name("我").click()
             self.driver.find_element_by_class_name("android.widget.ImageView").click()
             self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("13450244170")
