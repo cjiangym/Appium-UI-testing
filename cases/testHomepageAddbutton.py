@@ -1,6 +1,11 @@
 from appium import webdriver
 import unittest
 import time
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
 from common.common_method import Common_method
 
 class H5Test(unittest.TestCase):
@@ -26,7 +31,7 @@ class H5Test(unittest.TestCase):
             self.driver.tap([(x1+x,y1+y)],duration=None)                        #计算出屏幕点击区域
             '''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_sign").click()
-            time.sleep(3)
+            self.driver.implicitly_wait(10)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except:
             self.common_method.cutScreenShot ( "test_dailySign" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
@@ -45,7 +50,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            time.sleep(3)
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except:
             self.common_method.cutScreenShot ( "test_Msg_01" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
@@ -64,7 +69,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            time.sleep(2)
+            self.driver.implicitly_wait (8)
             '''点击系统消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_msg_name").click()
             '''查看第一条消息'''
@@ -94,7 +99,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            time.sleep(2)
+            self.driver.implicitly_wait (8)
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/div_new_msg_count")
             '''如果有未读消息，点击系统消息，没有则返回首页'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_msg_name").click()
@@ -123,7 +128,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            time.sleep(3)
+            self.driver.implicitly_wait(8)
             '''点击社区消息'''
             msg_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/tv_msg_name")
             msg_list[1].click()
@@ -149,7 +154,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            time.sleep(3)
+            self.driver.implicitly_wait (8)
             '''点击点赞消息'''
             msg_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/tv_msg_name")
             msg_list[2].click()
@@ -175,7 +180,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/img_msg").click ()
             '''会员卡'''
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_membership").click()
-            time.sleep(2)
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except Exception as e:
             self.common_method.cutScreenShot ( "test_vipCard" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
@@ -185,7 +190,7 @@ class H5Test(unittest.TestCase):
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
     def test_shoppingCard(self):
-        u"点击+按钮下的会员卡，跳转到我的卡券页面"
+        u"点击+按钮下的购物卡，跳转到我的购物卡"
         result = False
         try:
             self.common_method.adpass(self.driver)
@@ -194,12 +199,12 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/img_msg").click ()
             '''购物卡'''
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_shopping").click()
-            time.sleep(2)
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except Exception as e:
             self.common_method.cutScreenShot ( "test_shoppingCard" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result,"执行失败，请查看截图")
-        self.assertEqual(self.pageName,"我的卡劵")
+        self.assertEqual(self.pageName,"购物卡")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 

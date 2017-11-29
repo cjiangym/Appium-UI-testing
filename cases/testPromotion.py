@@ -224,7 +224,7 @@ class PromotionTest(unittest.TestCase):
             self.driver.swipe(x0, y1, x1*0.75, y1, duration=1000)
         except:
             self.common_method.cutScreenShot ("test_selectShoptype_03" + "_" + self.common_method.timestamp)
-            self.assertEqual (result, "执行失败，请查看截图")
+            self.assertEqual(result, "执行失败，请查看截图")
 
 
 

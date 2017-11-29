@@ -17,27 +17,28 @@ class HomepageTest(unittest.TestCase):
         u"点击首页到店签到-签到"
         result = False
         try:
-            self.common_method.adpass(self.driver)
-            self.common_method.pop_ads(self.driver)
-            self.driver.find_element_by_name("到店签到").click()
-            time.sleep (5)
-            pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
-            self.assertEqual(pageName,"到店签到")
-            #找签到按钮
-            signButton = self.driver.find_element_by_xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]")
-            canSign =signButton.is_enabled()
-            if canSign:             #如果签到按钮是可签到状态，则签到，否则直接返回上一级页面
-                signButton.click()
-                time.sleep(5)
-                self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_left").click()
+            try:
+                self.common_method.adpass(self.driver)
+                self.common_method.pop_ads(self.driver)
+                self.driver.find_element_by_name("到店签到").click()
+                time.sleep (5)
+                pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+                self.assertEqual(pageName,"到店签到")
+                #找签到按钮
+                signButton = self.driver.find_element_by_xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]")
+                canSign =signButton.is_enabled()
+                if canSign:             #如果签到按钮是可签到状态，则签到，否则直接返回上一级页面
+                    signButton.click()
+                    time.sleep(5)
+                    self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_left").click()
+                    self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click()
+                else:
+                    self.driver.find_element_by_id("com.ismartgo.apppub:id/pv_back").click()
+            except:
+                signButton = self.driver.find_element_by_id("com.ismartgo.apppub:id/store_signin")
                 self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click()
-            else:
-                self.driver.find_element_by_id("com.ismartgo.apppub:id/pv_back").click()
         except:
-            signButton = self.driver.find_element_by_id("com.ismartgo.apppub:id/store_signin")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click()
-        else:
-            self.common_method.cutScreenShot ("test_ClickShopSign" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot("test_ClickShopSign" + "_" + self.common_method.timestamp)
             self.assertEqual (result, "执行失败，请查看截图")
         self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
@@ -117,8 +118,8 @@ class HomepageTest(unittest.TestCase):
             self.common_method.adpass(self.driver)
             self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
-            button_list[5].click ()          # 点击商城赚按钮
-            time.sleep(2)
+            button_list[5].click()          # 点击商城赚按钮
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
         except:
             self.common_method.cutScreenShot ("test_clickScangoods" + "_" + self.common_method.timestamp)
@@ -136,7 +137,7 @@ class HomepageTest(unittest.TestCase):
             self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[6].click()          # 点击超级赚按钮
-            time.sleep(2)
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
         except:
             self.common_method.cutScreenShot ("test_clickHomepagebutton_07" + "_" + self.common_method.timestamp)
@@ -154,7 +155,7 @@ class HomepageTest(unittest.TestCase):
             self.common_method.pop_ads(self.driver)
             button_list = self.driver.find_elements_by_id ("com.ismartgo.apppub:id/iv_head_img")
             button_list[7].click()           # 点击淘宝赚按钮
-            time.sleep(2)
+            self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
         except:
             self.common_method.cutScreenShot ("test_clickHomepagebutton_08" + "_" + self.common_method.timestamp)
@@ -274,7 +275,7 @@ class HomepageTest(unittest.TestCase):
             self.common_method.cutScreenShot ("test_clickHomepagebutton_12" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
         else:
-            self.assertEqual(self.pageName,"我的卡券")
+            self.assertEqual(self.pageName,"我的卡劵")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
         self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
     def test_clickHomepagebutton_15(self):
