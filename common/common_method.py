@@ -3,7 +3,15 @@ import time
 import sys
 import os
 import platform
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
 from appium import webdriver
+
+
+
 #用于命令行执行时对所有路径进行搜索（pydev在运行时会把当前工程的所有文件夹路径都作为包的搜索路径，而命令行默认只是搜索当前路径）
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
@@ -42,21 +50,33 @@ class Common_method():
     def setUp(self):
         desired_caps = {
             "platformName": "Android",
-            "deviceName": "N2FGK16816810545",
-            "platformVersion": "4.4.4",
+            "deviceName": "A7J5T15509004553",
+            "platformVersion": "6.0",
             "appPackage": "com.ismartgo.apppub",
             "appActivity": "com.ismartgo.app.activity.WelcomeActivity",
             "unicodeKeyboard": True,               #------屏蔽软键盘------
-            "resetKeyboard": True
+            "resetKeyboard": True,
+            "automationName": 'Uiautomator2',
+
         }
         self.driver = webdriver.Remote ('http://127.0.0.1:4723/wd/hub', desired_caps)
-        time.sleep (2)
+        time.sleep(2)
         return self.driver
 
 
     #-----------截图路径--------------#
-    def cutScreenShot(self,picName):
+    def cutScreenShot(self,driver,picName):
         fileName = rootPath + "\\errorScreenShot\\" + picName + ".png"  #将用例方法名作为图片名
-        self.driver.get_screenshot_as_file(fileName)
+        driver.get_screenshot_as_file(fileName)
         time.sleep(2)
         return fileName
+
+    '''判断toast是否存在'''
+    def is_toast_exist(self,driver,text,timeout =30,poll_frequency=0.5):
+        try:
+            toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)
+            WebDriverWait(driver,timeout,poll_frequency).until(EC.presence_of_element_located(toast_loc))
+            #WebDriverWait (driver, timeout, poll_frequency).until(EC.presence_of_element_located((By.XPATH, toast_loc)))
+            return True
+        except:
+           return False

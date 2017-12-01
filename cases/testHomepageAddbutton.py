@@ -12,7 +12,7 @@ class H5Test(unittest.TestCase):
     common_method = Common_method()
     def setUp(self):
         self.driver = self.common_method.setUp()
-        time.sleep(3)
+        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
     def tearDown(self):
         self.driver.quit()
 
@@ -198,7 +198,9 @@ class H5Test(unittest.TestCase):
             '''点击+号按钮'''
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/img_msg").click ()
             '''购物卡'''
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_shopping").click()
+            #self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_shopping").click()
+            loc_text = 'new UiSelector().text("购物卡")'
+            self.driver.find_element_by_android_uiautomator(loc_text).click()
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except Exception as e:

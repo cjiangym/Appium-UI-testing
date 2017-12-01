@@ -9,7 +9,7 @@ class HomepageTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        time.sleep(3)
+        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
     def tearDown(self):
         self.driver.quit()
 
@@ -38,7 +38,7 @@ class HomepageTest(unittest.TestCase):
                 signButton = self.driver.find_element_by_id("com.ismartgo.apppub:id/store_signin")
                 self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click()
         except:
-            self.common_method.cutScreenShot("test_ClickShopSign" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot(self.driver,"首页到店签到" + "_" + self.common_method.timestamp)
             self.assertEqual (result, "执行失败，请查看截图")
         self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
@@ -52,13 +52,12 @@ class HomepageTest(unittest.TestCase):
             button_list[1].click()                              #点击拍立赚按钮
             time.sleep(5)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/rb_all").text
-        except:
-            self.common_method.cutScreenShot ("test_clickzbgame" + "_" + self.common_method.timestamp)
-            self.assertEqual(result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.pageName, "全部")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver,"首页拍立赚按钮" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
 
 
     def test_clickHomepagebutton_03(self):
@@ -71,10 +70,10 @@ class HomepageTest(unittest.TestCase):
             button_list[2].click ()                             #点击小票记账按钮
             time.sleep(2)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_receipt_back").click()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot("test_ClickShopSign"+"_"+self.common_method.timestamp)
+            self.common_method.cutScreenShot(self.driver,"首页小票记账"+"_"+self.common_method.timestamp)
             self.assertEqual(result,"执行失败，请查看截图")
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
 
     def test_clickHomepagebutton_04(self):
         u"点击首页扫描商品按钮"
@@ -86,13 +85,12 @@ class HomepageTest(unittest.TestCase):
             button_list[3].click ()          # 点击扫描商品按钮
             time.sleep (5)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
-        except:
-            self.common_method.cutScreenShot ("test_clickScangoods" + "_" + self.common_method.timestamp)
-            self.assertEqual (result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.pageName, "商品扫描")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
-        self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver, "首页扫描商品" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
 
     def test_clickHomepagebutton_05(self):
         u"点击首页邀请好友按钮"
@@ -104,13 +102,13 @@ class HomepageTest(unittest.TestCase):
             button_list[4].click ()          # 点击邀请好友按钮
             time.sleep(2)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
-        except:
-            self.common_method.cutScreenShot ("test_clickScangoods" + "_" + self.common_method.timestamp)
-            self.assertEqual(result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.pageName, "邀请好友")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
-        self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver,"首页邀请好友" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
+
     def test_clickHomepagebutton_06(self):
         u"点击首页商城赚按钮"
         result = False
@@ -122,7 +120,7 @@ class HomepageTest(unittest.TestCase):
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
         except:
-            self.common_method.cutScreenShot ("test_clickScangoods" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"点击首页商城赚" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
         else:
             self.assertEqual (self.pageName, "商城赚")
@@ -139,13 +137,13 @@ class HomepageTest(unittest.TestCase):
             button_list[6].click()          # 点击超级赚按钮
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
-        except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_07" + "_" + self.common_method.timestamp)
-            self.assertEqual(result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.pageName, "超级赚")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
-        self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver,"点击首页超级赚" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
+
 
     def test_clickHomepagebutton_08(self):
         u"点击首页淘宝赚按钮"
@@ -157,13 +155,13 @@ class HomepageTest(unittest.TestCase):
             button_list[7].click()           # 点击淘宝赚按钮
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
-        except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_08" + "_" + self.common_method.timestamp)
-            self.assertEqual(result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.pageName, "淘宝赚")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
-        self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver,"点击首页淘宝赚" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
+
 
     def test_clickHomepagebutton_09(self):
         u"点击首页超值购物卡按钮"
@@ -175,13 +173,12 @@ class HomepageTest(unittest.TestCase):
             button_list[8].click()           # 超值购物卡
             time.sleep(2)
             self.activity = self.driver.current_activity
-        except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_08" + "_" + self.common_method.timestamp)
-            self.assertEqual(result, "执行失败，请查看截图")
-        else:
             self.assertEqual (self.activity, "com.ismartgo.app.activity.RewardExchangeActivity")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/pv_back").click ()
-        self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+        except:
+            self.common_method.cutScreenShot (self.driver,"点击首页超级赚" + "_" + self.common_method.timestamp)
+            self.assertEqual(result, "执行失败，请查看截图")
 
     def test_clickHomepagebutton_10(self):
         u"点击首页礼品商城按钮"
@@ -193,13 +190,12 @@ class HomepageTest(unittest.TestCase):
             button_list[9].click()           # 超值购物卡
             time.sleep(2)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "礼品兑换")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_08" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"点击首页礼品商城" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName, "礼品兑换")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
 
     def test_clickHomepagebutton_11(self):
         u"点击我的页面我的兑换"
@@ -213,13 +209,13 @@ class HomepageTest(unittest.TestCase):
             button_list[0].click()
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "我的兑换")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_11" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot(self.driver,"我的-点击我的兑换" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName,"我的兑换")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+
     def test_clickHomepagebutton_12(self):
         u"点击我的页面网购订单"
         result = False
@@ -232,13 +228,13 @@ class HomepageTest(unittest.TestCase):
             button_list[1].click()               #点击网购订单
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "我的订单")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_12" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"我的-我的订单" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName,"我的订单")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+
 
     def test_clickHomepagebutton_13(self):
         u"点击我的页面我的关注"
@@ -252,13 +248,13 @@ class HomepageTest(unittest.TestCase):
             button_list[2].click()               #点击我的关注
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "我的关注")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_12" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"我的-点击我的关注按钮" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName,"我的关注")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+
     def test_clickHomepagebutton_14(self):
         u"点击我的页面我的卡券"
         result = False
@@ -271,13 +267,13 @@ class HomepageTest(unittest.TestCase):
             button_list[3].click()               #点击我的卡券
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "我的卡劵")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_12" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"我的-点击我的卡券" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName,"我的卡劵")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+
     def test_clickHomepagebutton_15(self):
         u"点击我的页面购物清单"
         result = False
@@ -290,10 +286,9 @@ class HomepageTest(unittest.TestCase):
             button_list[4].click()               #点击购物清单
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (self.pageName, "购物清单")
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:
-            self.common_method.cutScreenShot ("test_clickHomepagebutton_12" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot (self.driver,"我的-点击我的购物清单" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
-        else:
-            self.assertEqual(self.pageName,"购物清单")
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
-        self.assertEqual(self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")

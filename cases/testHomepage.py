@@ -9,7 +9,7 @@ class HomepageTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        time.sleep(3)
+        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
     def tearDown(self):
         self.driver.quit()
 

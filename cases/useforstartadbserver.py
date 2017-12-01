@@ -7,7 +7,8 @@ desired_caps = {
     "appPackage": "com.ismartgo.apppub",
     "appActivity": "com.ismartgo.app.activity.WelcomeActivity",
     "unicodeKeyboard": True,
-    "resetKeyboard": True
+    "resetKeyboard": True,
+    "noReset":True
 }
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 driver.quit()
