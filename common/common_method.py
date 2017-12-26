@@ -20,7 +20,7 @@ sys.path.append(rootPath)
 
 class Common_method():
     testTime = time.strftime("%Y-%m-%d", time.localtime())   #测试报告时间
-    timestamp = time.strftime("%Y%m%d %H%M%S")
+    #timestamp = time.strftime("%Y%m%d %H%M%S")
     #获取测试报告
     def get_reportpath(self):
         report_path = rootPath + "\\report\\" + self.testTime + "-testResult.html"

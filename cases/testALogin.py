@@ -16,7 +16,6 @@ class LoginTest(unittest.TestCase):
 
     def test_phoneLogin(self):
         u"测试手机号码登录"
-        result = False
         try:
             self.common_method.adpass(self.driver)
             self.common_method.pop_ads(self.driver)
@@ -29,5 +28,5 @@ class LoginTest(unittest.TestCase):
             text = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_sign_days").text
             self.assertIn("连续签到",text)
         except Exception as a:
-            self.common_method.cutScreenShot(self.driver,"手机号登录"+"_"+self.common_method.timestamp)
-            self.assertTrue(result,"执行失败，请查看截图")
+            self.common_method.cutScreenShot(self.driver,"手机号登录")
+            self.assertTrue(None,"执行失败，请查看截图")
