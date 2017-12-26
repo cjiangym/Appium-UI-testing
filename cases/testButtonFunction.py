@@ -273,7 +273,7 @@ class HomepageTest(unittest.TestCase):
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
             self.assertEqual (self.pageName, "购物清单")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
-            self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
+            self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
         except:
             self.common_method.cutScreenShot (self.driver,"我的-点击我的购物清单")
             self.assertEqual(None, "执行失败，请查看截图")

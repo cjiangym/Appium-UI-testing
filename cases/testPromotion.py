@@ -215,6 +215,47 @@ class PromotionTest(unittest.TestCase):
             self.common_method.cutScreenShot (self.driver,"左右滑动商店类型")
             self.assertEqual(None, "执行失败，请查看截图")
 
+    def test_promotion_01(self):
+        u"测试点击首页促销信息"
+        try:
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
+            self.common_method.swipe_up(self.driver,t=500,n=1)
+            #点击促销信息图片
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/news_pic").click()
+            self.driver.implicitly_wait(5)
+            title = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(title,"促销详情")
+            time.sleep(1)
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+            time.sleep(1)
+        except:
+            self.common_method.cutScreenShot(self.driver,"点击首页促销信息")
+            self.assertTrue(None,"执行失败，请查看截图")
+        self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
+
+    def test_promotion_02(self):
+        u"点击商店主页促销信息"
+        try:
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
+            self.common_method.swipe_up(self.driver,t=500,n=2)
+            #点击促销信息零售商logo,进入商店主页
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/shopLogo").click()
+            self.driver.implicitly_wait(5)
+            #点击促销信息图片
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/news_pic").click()
+            self.driver.implicitly_wait(5)
+            title = self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual (title, "促销详情")
+            time.sleep (1)
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+            time.sleep(1)
+        except:
+            self.common_method.cutScreenShot(self.driver,"点击商店主页促销信息")
+            self.assertTrue(None,"执行失败，请查看截图")
+        self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.StoreHomeActivity")
+
 
 
 

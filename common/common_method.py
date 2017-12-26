@@ -21,30 +21,6 @@ sys.path.append(rootPath)
 class Common_method():
     testTime = time.strftime("%Y-%m-%d", time.localtime())   #测试报告时间
     #timestamp = time.strftime("%Y%m%d %H%M%S")
-    #获取测试报告
-    def get_reportpath(self):
-        report_path = rootPath + "\\report\\" + self.testTime + "-testResult.html"
-        return report_path
-
-        # -----用例初始化,检查开屏广告--------------#
-    def adpass(self,driver):
-        try:
-            driver.wait_activity ("com.ismartgo.app.activity.SmartGoSplashADActivity", 3, 1)
-            driver.find_element_by_id('com.ismartgo.apppub:id/tv_countdown').click ()
-            time.sleep(2)
-        except:
-            pass
-
-    # --------检查弹窗广告----------------#
-    def pop_ads(self,driver):
-        try:
-            el = driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
-            x = driver.get_window_size()["width"]
-            y = driver.get_window_size()["height"]
-            self.driver.tap ([(x/2, y-120)], duration=None)                                # 关闭弹窗个广告
-            time.sleep(1)
-        except:
-            pass
 
     # --------初始化----------------#
     def setUp(self):
@@ -54,14 +30,62 @@ class Common_method():
             "platformVersion": "6.0",
             "appPackage": "com.ismartgo.apppub",
             "appActivity": "com.ismartgo.app.activity.WelcomeActivity",
-            "unicodeKeyboard": True,               #------屏蔽软键盘------
+            "unicodeKeyboard": True,  # ------屏蔽软键盘------
             "resetKeyboard": True,
             "automationName": 'Uiautomator2',
 
         }
         self.driver = webdriver.Remote ('http://127.0.0.1:4723/wd/hub', desired_caps)
-        time.sleep(2)
+        time.sleep (2)
         return self.driver
+
+    # -----检查是否有开屏广告--------------#
+    def adpass(self,driver):
+        try:
+            driver.wait_activity ("com.ismartgo.app.activity.SmartGoSplashADActivity", 3, 1)
+            driver.find_element_by_id('com.ismartgo.apppub:id/tv_countdown').click ()
+            time.sleep(2)
+        except:
+            pass
+
+    # --------检查是否有弹窗广告----------#
+    def pop_ads(self,driver):
+        try:
+            el = driver.find_element_by_id("com.ismartgo.apppub:id/rl_content")       #检查是否有弹窗广告
+            x = driver.get_window_size()["width"]
+            y = driver.get_window_size()["height"]
+            self.driver.tap([(x/2, y-120)], duration=None)                                # 关闭弹窗个广告
+            time.sleep(1)
+        except:
+            pass
+
+    #--------屏幕上滑动-------------#
+    def swipe_up(self,driver,t,n):
+        window_size = self.driver.get_window_size()
+        x0= window_size["width"] *0.5
+        y0= window_size["height"] *0.5
+        y1= window_size["height"] *0.25
+        for i in range(n):
+            self.driver.swipe(x0,y0,x0,y1,t)
+
+    # --------屏幕左滑动-------------#
+    def swipe_left(self, driver, t, n):
+        window_size = self.driver.get_window_size ()
+        x0 = window_size["width"] * 0.5
+        y0 = window_size["height"] * 0.5
+        x1 = window_size["width"] * 0.25
+        for i in range (n):
+            self.driver.swipe (x0, y0, x1, y0, t)
+
+    # --------屏幕右滑滑动-------------#
+    def swipe_right(self, driver, t, n):
+        window_size = self.driver.get_window_size()
+        x0 = window_size["width"] * 0.5
+        y0 = window_size["height"] * 0.5
+        x1 = window_size["width"] * 0.75
+        for i in range (n):
+            self.driver.swipe (x0, y0, x1, y0, t)
+
 
 
     #-----------截图路径--------------#
@@ -70,6 +94,11 @@ class Common_method():
         driver.get_screenshot_as_file(fileName)
         time.sleep(2)
         return fileName
+
+    #----------获取测试报告----------#
+    def get_reportpath(self):
+        report_path = rootPath + "\\report\\" + self.testTime + "-testResult.html"
+        return report_path
 
     '''判断toast是否存在
     def is_toast_exist(self,driver,text,timeout =30,poll_frequency=0.5):
