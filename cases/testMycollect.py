@@ -9,7 +9,7 @@ class MycollectTest(unittest.TestCase):
     common_method = Common_method()
     def setUp(self):
         self.driver = self.common_method.setUp()
-        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 
@@ -39,7 +39,6 @@ class MycollectTest(unittest.TestCase):
                 self.driver.implicitly_wait(8)
                 self.driver.find_element_by_id("com.ismartgo.apppub:id/mer_collect").click()
                 result = self.common_method.is_toast_exist(self.driver,"成功添加到购物清单")
-                print(result)
                 self.assertTrue(result)
             except:
                 self.common_method.cutScreenShot ("test_collectList" + "_" + self.common_method.timestamp)

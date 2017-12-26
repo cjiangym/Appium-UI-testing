@@ -10,7 +10,7 @@ class LoginTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 
@@ -18,12 +18,11 @@ class LoginTest(unittest.TestCase):
         u"测试手机号码登录"
         result = False
         try:
-            self.common_method.adpass (self.driver)
-            self.common_method.pop_ads (self.driver)
+            self.common_method.adpass(self.driver)
+            self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_name("我").click()
             self.driver.find_element_by_class_name("android.widget.ImageView").click()
-            phone = self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone")
-            self.driver.press_keycode("KEYCODE_1")
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("13450244170")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_password_input").send_keys("123456")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_login").click()
             self.driver.wait_activity("com.ismartgo.app.activity.Tab_Container_Activity",timeout=8,interval=1)

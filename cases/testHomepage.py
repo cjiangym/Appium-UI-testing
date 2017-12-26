@@ -9,7 +9,7 @@ class HomepageTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 
@@ -52,9 +52,9 @@ class HomepageTest(unittest.TestCase):
             self.common_method.adpass (self.driver)
             self.common_method.pop_ads (self.driver)
             self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_right_bottom_img").click()
-            time.sleep(1)
+            time.sleep(8)
         except Exception as e:
-            self.common_method.cutScreenShot ("test_recommendation_nearby_03" + "_" + self.common_method.timestamp)
+            self.common_method.cutScreenShot ("附近推荐-点击右下角图片" + "_" + self.common_method.timestamp)
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.SearchForPromotionNewActivity")
         time.sleep(1)

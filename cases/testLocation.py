@@ -9,7 +9,7 @@ class LocationTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = self.common_method.setUp()
-        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 

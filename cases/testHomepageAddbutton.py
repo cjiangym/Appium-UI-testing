@@ -12,7 +12,7 @@ class H5Test(unittest.TestCase):
     common_method = Common_method()
     def setUp(self):
         self.driver = self.common_method.setUp()
-        self.driver.wait_activity ("com.ismartgo.app.activity.Tab_Container_Activity", 10)
+        time.sleep(3)
     def tearDown(self):
         self.driver.quit()
 
@@ -53,7 +53,7 @@ class H5Test(unittest.TestCase):
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except:
-            self.common_method.cutScreenShot ( "test_Msg_01" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot ( self.driver,"点击进入消息中心" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual(self.pageName,"消息中心")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
@@ -69,7 +69,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            self.driver.implicitly_wait (8)
+            self.driver.implicitly_wait(8)
             '''点击系统消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_msg_name").click()
             '''查看第一条消息'''
@@ -84,7 +84,7 @@ class H5Test(unittest.TestCase):
             time.sleep(1)
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
         except:
-            self.common_method.cutScreenShot ( "test_Msg_02" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot (self.driver, "查看系统消息" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual(self.pageName,"详情")
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
@@ -99,7 +99,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/img_msg").click()
             '''点击消息'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_msg").click()
-            self.driver.implicitly_wait (8)
+            self.driver.implicitly_wait(8)
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/div_new_msg_count")
             '''如果有未读消息，点击系统消息，没有则返回首页'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_msg_name").click()
@@ -114,7 +114,7 @@ class H5Test(unittest.TestCase):
             '''没有找到未读消息，则返回'''
             self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
         else:
-            self.common_method.cutScreenShot( "test_Msg_03" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot(self.driver, "一键全读" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
@@ -138,7 +138,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
             time.sleep(1)
         except:
-            self.common_method.cutScreenShot ( "test_Msg_04社区消息" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot ( self.driver,"社区消息" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual(self.pageName,"社区消息")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
@@ -164,7 +164,7 @@ class H5Test(unittest.TestCase):
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
             time.sleep(1)
         except:
-            self.common_method.cutScreenShot ( "test_Msg_04社区消息" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot ( self.driver,"点赞消息" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result, "执行失败，请查看截图")
         self.assertEqual(self.pageName,"点赞消息")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
@@ -183,7 +183,7 @@ class H5Test(unittest.TestCase):
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except Exception as e:
-            self.common_method.cutScreenShot ( "test_vipCard" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot ( self.driver,"点击我的卡券-会员卡" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result,"执行失败，请查看截图")
         self.assertEqual(self.pageName,"我的卡劵")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
@@ -204,7 +204,7 @@ class H5Test(unittest.TestCase):
             self.driver.implicitly_wait(8)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
         except Exception as e:
-            self.common_method.cutScreenShot ( "test_shoppingCard" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
+            self.common_method.cutScreenShot (self.driver, "我的卡券-购物卡" + "_" + self.common_method.timestamp)  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(result,"执行失败，请查看截图")
         self.assertEqual(self.pageName,"购物卡")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()

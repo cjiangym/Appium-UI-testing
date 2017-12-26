@@ -71,7 +71,7 @@ class Common_method():
         time.sleep(2)
         return fileName
 
-    '''判断toast是否存在'''
+    '''判断toast是否存在
     def is_toast_exist(self,driver,text,timeout =30,poll_frequency=0.5):
         try:
             toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)
@@ -80,3 +80,4 @@ class Common_method():
             return True
         except:
            return False
+    '''
