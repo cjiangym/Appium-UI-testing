@@ -119,6 +119,47 @@ class ExchangeGiftTest(unittest.TestCase):
             Common_method.cutScreenShot(self,self.driver,"查看更多礼品")
             self.assertTrue(None,"执行失败，请查看截图")
 
+    def test_giftModule_04(self):
+        u"测试查看礼品详情"
+        try:
+            Common_method.adpass(self,self.driver)
+            Common_method.pop_ads(self,self.driver)
+            '''点击精明豆tab'''
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[3].click()
+            self.driver.implicitly_wait(5)
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").click()
+            try:
+                '''如果有vip板块礼品，点击礼品'''
+                loc_text_vip = 'new UiSelector().text("VIP专属")'
+                self.driver.find_element_by_android_uiautomator(loc_text_vip).click()
+            except:
+                '''没有专区礼品，检查是否有推荐礼品'''
+                loc_text_hot = 'new UiSelector().text("热门单品")'
+                self.driver.find_element_by_android_uiautomator(loc_text_hot).click()
+                '''查看礼品详情后返回礼品列表'''
+                self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+                self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.GiftExchangeActivity")
+            else:
+                '''查看vip礼品详情'''
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_logo").click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+                self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.GiftExchangeActivity")
+                loc_text_hot = 'new UiSelector().text("热门单品")'
+                self.driver.find_element_by_android_uiautomator(loc_text_hot).click()
+                self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
+                self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.GiftExchangeActivity")
+            try:
+                Common_method.swipe_up(self,self.driver, t=500,n=3)
+            except:
+                Common_method.swipe_up (self, self.driver, t=500, n=3)
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_logo").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+            self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.GiftExchangeActivity")
+        except:
+            Common_method.cutScreenShot(self,self.driver,"查看礼品详情")
+            self.assertTrue(None,"执行失败，请查看截图")
+
     def test_exchangeGift(self):
         u"测试兑换礼品"
         try:
