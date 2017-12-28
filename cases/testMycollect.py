@@ -20,27 +20,33 @@ class MycollectTest(unittest.TestCase):
             self.common_method.pop_ads(self.driver)
             '''点击购物清单tab'''
             self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[2].click()
-            time.sleep(1)
+            self.driver.implicitly_wait(5)
             pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
             self.assertEqual(pageName,"购物清单")
-            '''没有收藏过，则点击收藏按钮跳转到促销优惠列表'''
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_base_empty")
-        except:
-            '''有收藏过，则点击第一个取消收藏'''
-            self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_shopping_list_collect").click ()
-            time.sleep(1)
-        else:
             try:
-                self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_base_empty").click()
-                self.driver.implicitly_wait(8)
-                self.driver.find_element_by_id("com.ismartgo.apppub:id/scan_more").click()
-                self.driver.implicitly_wait(8)
-                self.driver.find_element_by_id("com.ismartgo.apppub:id/mer_collect").click()
-                time.sleep(2)
-                self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+                '''没有收藏过，则点击收藏按钮跳转到促销优惠列表'''
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_base_empty")
             except:
-                self.common_method.cutScreenShot (self.driver,"购物清单列表")
-                self.assertEqual(None,"执行失败，请查看截图")
+                '''有收藏过，则点击第一个取消收藏'''
+                self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_shopping_list_collect").click()
+                '''下拉刷新'''
+                try:
+                    Common_method.swipe_down(self, self.driver, t=500, n=1)
+                except:
+                    Common_method.swipe_down(self, self.driver, t=500, n=1)
+                time.sleep(2)
+            else:
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_base_empty").click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/scan_more").click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/mer_collect").click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_left").click()
+                '''收藏后返回到购物清单列表检查'''
+                self.driver.find_elements_by_id ("com.ismartgo.apppub:id/tab_Item_layout")[2].click()
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/iv_rv_sticky_header")
+                time.sleep(2)
+        except:
+            self.common_method.cutScreenShot (self.driver,"购物清单列表")
+            self.assertEqual(None,"执行失败，请查看截图")
 
     def test_collectInvalidList_01(self):
         u"测试我的购物清单列表-失效购物清单,取消清空购物清单"

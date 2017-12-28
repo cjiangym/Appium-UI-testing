@@ -253,7 +253,7 @@ class HomepageTest(unittest.TestCase):
             button_list[3].click()               #点击我的卡券
             time.sleep(3)
             self.pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
-            self.assertEqual (self.pageName, "我的卡劵")
+            self.assertEqual (self.pageName, "我的卡券")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click ()
             self.assertEqual (self.driver.current_activity, "com.ismartgo.app.activity.Tab_Container_Activity")
         except:

@@ -68,6 +68,15 @@ class Common_method():
         for i in range(n):
             self.driver.swipe(x0,y0,x0,y1,t)
 
+    # --------屏幕上滑动-------------#
+    def swipe_down(self, driver, t, n):
+        window_size = self.driver.get_window_size ()
+        x0 = window_size["width"] * 0.5
+        y0 = window_size["height"] * 0.25
+        y1 = window_size["height"] * 0.75
+        for i in range (n):
+            self.driver.swipe (x0, y0, x0, y1, t)
+
     # --------屏幕左滑动-------------#
     def swipe_left(self, driver, t, n):
         window_size = self.driver.get_window_size ()
