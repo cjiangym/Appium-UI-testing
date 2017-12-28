@@ -13,14 +13,13 @@ class MycollectTest(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test_collectList(self):
+    def test_mycollectList(self):
         u"测试我的购物清单列表"
         try:
             self.common_method.adpass(self.driver)
             self.common_method.pop_ads(self.driver)
             '''点击购物清单tab'''
-            tab_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")
-            tab_list[2].click()
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[2].click()
             time.sleep(1)
             pageName = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
             self.assertEqual(pageName,"购物清单")
@@ -37,6 +36,8 @@ class MycollectTest(unittest.TestCase):
                 self.driver.find_element_by_id("com.ismartgo.apppub:id/scan_more").click()
                 self.driver.implicitly_wait(8)
                 self.driver.find_element_by_id("com.ismartgo.apppub:id/mer_collect").click()
+                time.sleep(2)
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
             except:
                 self.common_method.cutScreenShot (self.driver,"购物清单列表")
                 self.assertEqual(None,"执行失败，请查看截图")

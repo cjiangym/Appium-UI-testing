@@ -178,7 +178,7 @@ class H5Test(unittest.TestCase):
         except Exception as e:
             self.common_method.cutScreenShot ( self.driver,"点击我的卡券-会员卡")  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(None,"执行失败，请查看截图")
-        self.assertEqual(self.pageName,"我的卡劵")
+        self.assertEqual(self.pageName,"我的卡券")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
@@ -198,7 +198,7 @@ class H5Test(unittest.TestCase):
         except Exception as e:
             self.common_method.cutScreenShot (self.driver, "我的卡券-购物卡")  # 异常后截图放在erroScreenShot文件夹下
             self.assertEqual(None,"执行失败，请查看截图")
-        self.assertEqual(self.pageName,"购物卡")
+        self.assertEqual(self.pageName,"我的卡券")
         self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
         self.assertEqual (self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
