@@ -223,7 +223,106 @@ class MypageTest(unittest.TestCase):
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/layout_password_input").send_keys ("123456")
             self.driver.find_element_by_id ("com.ismartgo.apppub:id/btn_confirm").click()
         except:
-            Common_method.cutScreenShot(self,self.driver,"进入修改号码页面")
+            Common_method.cutScreenShot(self,self.driver,"修改密码")
+            self.assertTrue(None,"执行失败，请查看截图")
+
+    def test_updateUser_09(self):
+        u"修改密码-不修改直接返回"
+        try:
+            Common_method.adpass(self,self.driver)
+            Common_method.pop_ads(self,self.driver)
+            '''点击'我'tab'''
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[4].click()
+            self.driver.implicitly_wait(3)
+            '''进入修改资料页面'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_head_logined").click()
+            try:
+                '''点击密码处'''
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/ll_modify_password").click()
+            except:
+                self.assertTrue(None,"该账号为微信登录，不能修改密码")
+            '''点击返回按钮'''
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/tv_left").click()
+            pageTitle = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(pageTitle,"我的资料")
+        except:
+            Common_method.cutScreenShot(self,self.driver,"修改密码-不修改直接返回")
+            self.assertTrue(None,"执行失败，请查看截图")
+
+    def test_updateUser_10(self):
+        u"绑定邮箱"
+        try:
+            Common_method.adpass(self,self.driver)
+            Common_method.pop_ads(self,self.driver)
+            '''点击'我'tab'''
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[4].click()
+            self.driver.implicitly_wait(3)
+            '''进入修改资料页面'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_head_logined").click()
+            '''点击邮箱处'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_mailbox").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_email").send_keys("test111@ismartgo.com")
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_confirm").click()
+            pageTitle = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(pageTitle,"我的资料")
+        except:
+            Common_method.cutScreenShot(self,self.driver,"绑定邮箱")
+            self.assertTrue(None,"执行失败，请查看截图")
+
+    def test_updateUser_11(self):
+        u"修改地址"
+        try:
+            Common_method.adpass(self,self.driver)
+            Common_method.pop_ads(self,self.driver)
+            '''点击'我'tab'''
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[4].click()
+            self.driver.implicitly_wait(5)
+            '''进入修改资料页面'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_head_logined").click()
+            '''点击地址处'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_my_address").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_name").send_keys("测~试a")
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("11111111111")
+            '''选择省市区'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_address").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_province").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
+            self.driver.find_element_by_id ("com.ismartgo.apppub:id/item_text1").click()
+            try:
+                self.driver.find_element_by_id ("com.ismartgo.apppub:id/item_text1").click()
+                '''有些城市没有四级地址'''
+            except:
+                pass
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_detail_address").send_keys("详细地址测试")
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_submit").click()
+            pageTitle = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(pageTitle,"我的资料")
+        except:
+            Common_method.cutScreenShot(self,self.driver,"修改地址")
+            self.assertTrue(None,"执行失败，请查看截图")
+
+    def test_updateUser_12(self):
+        u"修改资料-邀请码检查"
+        try:
+            Common_method.adpass(self,self.driver)
+            Common_method.pop_ads(self,self.driver)
+            '''点击'我'tab'''
+            self.driver.find_elements_by_id("com.ismartgo.apppub:id/tab_Item_layout")[4].click()
+            self.driver.implicitly_wait(5)
+            '''进入修改资料页面'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_head_logined").click()
+            '''点击邀请码处'''
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_invitate_code").click()
+            assert1 = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_invitate_code_tips").text
+            self.assertEqual(assert1,"我的邀请码")
+            assert2 = 'new UiSelector().text("好友邀请码")'
+            self.driver.find_element_by_android_uiautomator(assert2)
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_left").click()
+            pageTitle = self.driver.find_element_by_id("com.ismartgo.apppub:id/tv_title").text
+            self.assertEqual(pageTitle,"我的资料")
+        except:
+            Common_method.cutScreenShot(self,self.driver,"修改资料-邀请码检查")
             self.assertTrue(None,"执行失败，请查看截图")
 
     def test_enterForum_01(self):

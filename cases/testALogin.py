@@ -21,7 +21,7 @@ class LoginTest(unittest.TestCase):
             self.common_method.pop_ads(self.driver)
             self.driver.find_element_by_name("我").click()
             self.driver.find_element_by_class_name("android.widget.ImageView").click()
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("13450244170")
+            self.driver.find_element_by_id("com.ismartgo.apppub:id/et_phone").send_keys("16666666339")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/layout_password_input").send_keys("123456")
             self.driver.find_element_by_id("com.ismartgo.apppub:id/btn_login").click()
             self.driver.wait_activity("com.ismartgo.app.activity.Tab_Container_Activity",timeout=8,interval=1)

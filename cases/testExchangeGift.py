@@ -190,7 +190,11 @@ class ExchangeGiftTest(unittest.TestCase):
             self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
             self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
             self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
-            self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
+            '''有些城市没有四级地址'''
+            try:
+                self.driver.find_element_by_id("com.ismartgo.apppub:id/item_text1").click()
+            except:
+                pass
             try:
                 Common_method.swipe_up(self,self.driver,t=500,n=2)
             except:
