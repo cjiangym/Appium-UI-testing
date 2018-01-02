@@ -18,11 +18,10 @@ class PromotionTest(unittest.TestCase):
         try:
             self.common_method.adpass(self.driver)
             self.common_method.pop_ads(self.driver)
-            x1 = self.driver.find_element_by_class_name("android.widget.ImageView").location["x"]
-            y1 = self.driver.find_element_by_class_name("android.widget.ImageView").location["y"]
-            x2 = self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_tab1").location["x"]
-            y2 = self.driver.find_element_by_id ("com.ismartgo.apppub:id/ll_tab1").location["y"]
-            self.driver.swipe(x1,y2,x2,y1,duration=None)
+            try:
+                self.common_method.swipe_up(self.driver,t=500,n=2)
+            except:
+                self.common_method.swipe_up (self.driver, t=500, n=2)
             shopLogo_list = self.driver.find_elements_by_id("com.ismartgo.apppub:id/shopLogo")
             shopLogo_list[0].click()
         except Exception as e:
@@ -31,7 +30,7 @@ class PromotionTest(unittest.TestCase):
         time.sleep(3)
         activity = self.driver.current_activity
         self.assertEqual(activity,"com.ismartgo.app.activity.StoreHomeActivity")
-        self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_left").click ()
+        self.driver.find_element_by_id ("com.ismartgo.apppub:id/iv_left").click()
         self.assertEqual(self.driver.current_activity,"com.ismartgo.app.activity.Tab_Container_Activity")
 
 
